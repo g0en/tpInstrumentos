@@ -1,0 +1,100 @@
+.tarjeta {
+  width: 400px; /* Ancho fijo de la tarjeta */
+  background-color: aliceblue;
+  padding: 10px;
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1); /* Sombra */
+  align-items: center;
+}
+
+.card-img {
+  height: auto; /* Altura fija para las imágenes */
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+  border-radius: 10px 10px 0 0; /* Bordes redondeados solo arriba */
+}
+
+.card-body {
+  padding: 10px;
+  height: 350px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+
+.img-altura {
+  width: 100%; /* Limita la anchura al 100% del contenedor */
+  max-height: 200px; /* Ajusta la altura según sea necesario */
+  object-fit: contain; /* Asegura que la imagen se ajuste dentro de su contenedor sin deformarse */
+}
+
+.btn-mercado-libre {
+  background-color: #ffffff; /* Color de fondo blanco */
+  color: #3483fa; /* Color de texto azul */
+  border: 2px solid #3483fa; /* Borde azul */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin decoración de texto */
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer; /* Cursor de mano al pasar el mouse */
+  transition-duration: 0.4s; /* Duración de la transición */
+  align-items: center;
+}
+
+.btn-mercado-libre:hover {
+  background-color: #3483fa; /* Color de fondo azul al pasar el mouse */
+  color: #ffffff; /* Color de texto blanco al pasar el mouse */
+}
+
+
+.marca-modelo > .card-text {
+  margin-bottom: 0; /* Elimina el espacio debajo de los párrafos */
+  font-size: 18px; /* Ajusta el tamaño del texto según tus necesidades */
+  text-align: center;
+}
+
+.costo-envio {
+  margin-top: 1em;
+  font-size: 16px;
+  font-weight: 320; /* Añade espacio antes del costo de envío */
+  text-align: center;
+}
+
+
+.buttonSinStock {
+  background-color: gainsboro;
+}
+
+.buttonSinStock:hover {
+  background-color: red;
+}
+
+.espacio {
+  padding: 5px;
+}
+
+.iconoMasMenos {
+  cursor: pointer;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: lightseagreen;
+
+}

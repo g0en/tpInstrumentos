@@ -1,0 +1,87 @@
+/* GrillaInstrumento.css */
+
+.container-fluid {
+    position: absolute;
+    top: 20px;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .row {
+    margin-bottom: 10px;
+  }
+  
+  .row.header {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .row:nth-child(odd) {
+    background-color: #e9ecef;
+  }
+  
+  .row:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .col {
+    padding: 10px;
+  }
+  
+  .border {
+    border: 1px solid #dee2e6;
+  }
+  
+  .border-end {
+    border-right: 1px solid #dee2e6;
+  }
+  
+  .text-start {
+    text-align: left;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .grilla-header {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+  }
+  
+  .grilla-row:nth-child(odd) {
+    background-color: #f8f9fa; /* Cambia el color de fondo para las filas impares */
+  }
+  
+  .grilla-row:hover {
+    background-color: #dee2e6; /* Cambia el color de fondo al pasar el mouse */
+  }
+  
+  .grilla-row {
+    padding: 10px;
+  }
+
+  .container-grilla {
+    border: solid 2px #343a40;
+  }
+  
+  .button-agregar {
+    margin-bottom: 10px;
+  }
