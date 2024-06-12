@@ -21,7 +21,7 @@ public class MercadoPagoService {
 
 // Agrega credenciales
         try {
-            MercadoPagoConfig.setAccessToken("TEST-4834555378001941-053116-11024f130f841a2bf5ef6877ebee9c76-1149974449");
+            MercadoPagoConfig.setAccessToken("TEST-6868831087152965-060612-f20879d73b51d173129c43f57c44c205-1844671669");
             PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
                     .id(String.valueOf(pedido.getId()))
                     .title(pedido.getTitulo())

@@ -9,7 +9,7 @@ function CheckoutMP({ preferenceId }: Props) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    initMercadoPago("TEST-34f56a1a-ee13-4cae-8593-d65a8e849b42", {
+    initMercadoPago("TEST-749c0c7b-de56-4f89-ab1d-7caca80541f1", {
       locale: "es-AR",
     });
     if (preferenceId && preferenceId !== "") {
