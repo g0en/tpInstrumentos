@@ -2,6 +2,7 @@ import Categoria from "../entidades/Categoria";
 import Instrumento from "../entidades/Instrumento";
 import PreferenceMP from "../entidades/mercadoPago/PreferenceMP";
 import Pedido from "../entidades/Pedido";
+import Usuario from "../entidades/Usuario";
 
 export async function getInstrumentoJSONFetch() {
   const urlServer = "http://localhost:8080/Instrumento/traer-lista";
@@ -160,4 +161,17 @@ export async function traerPedido(codigo: number) {
     mode: "cors",
   });
   return (await response.json()) as Pedido;
+}
+
+export async function existeEnBase(nombreUsuario: string, clave: string) {
+  const urlServer = `http://localhost:8080/Usuario/login?nombreUsuario=${nombreUsuario}&clave=${clave}`;
+  const response = await fetch(urlServer, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    mode: "cors",
+  });
+  return (await response.json()) as Usuario;
 }

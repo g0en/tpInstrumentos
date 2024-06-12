@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import tp.react.back.tpreactback.modelo.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByNombreUsuario(String nombreUsuario);
+    boolean existsByNombreUsuarioAndClave(String nombreUsuario, String clave);
 }

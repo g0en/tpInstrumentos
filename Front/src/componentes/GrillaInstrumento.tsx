@@ -57,16 +57,14 @@ function GrillaInstrumento() {
           <div className="col-1 border-end">
             <b>Modificar</b>
           </div>
-          <div>
-            {
-              (usuarioLogueado.rol == Roles.ADMIN) ?
-                <div className="col-1 border-end">
-                  <b>Eliminar</b>
-                </div>
-                :
-                <div className="col-1 border-end"></div>
-            }
-          </div>
+          {
+            (usuarioLogueado.rol === Roles.ADMIN) ?
+              <div className="col-1 border-end">
+                <b>Eliminar</b>
+              </div>
+              :
+              <></>
+          }
         </div>
         {instrumentos.map((instrumento: Instrumento) => (
           <div className="row border" key={instrumento.id}>
@@ -90,22 +88,20 @@ function GrillaInstrumento() {
                 Modificar
               </a>
             </div>
-            <div>
-              {
-                (usuarioLogueado.rol == Roles.ADMIN) ?
-                  <div className="col-1 border-end">
-                    <a
-                      className="btn btn-danger"
-                      style={{ marginBottom: 10 }}
-                      onClick={() => deleteInstrumento(instrumento.id)}
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                  :
-                  <div className="col-1 border-end"></div>
-              }
+            {
+              (usuarioLogueado.rol === Roles.ADMIN) ?
+              <div className="col-1 border-end">
+              <a
+                className="btn btn-danger"
+                style={{ marginBottom: 10 }}
+                onClick={() => deleteInstrumento(instrumento.id)}
+              >
+                Eliminar
+              </a>
             </div>
+            :
+            <></>
+            }
           </div>
         ))}
       </div>

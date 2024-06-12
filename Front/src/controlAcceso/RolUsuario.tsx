@@ -9,7 +9,7 @@ interface Props {
 
 function RolUsuario({ rol }: Props) {
   
-    const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('usuario'));
+    const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('user'));
     const usuarioLogueado:Usuario = JSON.parse(jsonUsuario) as Usuario;
     //si esta logueado y es administrador lo dejo ingresar si no
     if((usuarioLogueado && usuarioLogueado.rol === rol)){

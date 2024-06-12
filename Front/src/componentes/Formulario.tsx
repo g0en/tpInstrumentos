@@ -24,6 +24,7 @@ function Formulario() {
       let instrumentoSelect: Instrumento = await getInstrumentoXIdFetch(
         Number(idInstrumento)
       );
+      console.log("ID: " + idInstrumento)
       setInstrumento(instrumentoSelect);
       setCodigoCategoria(instrumentoSelect.categoria?.codigo || 0); // Add this line
     }

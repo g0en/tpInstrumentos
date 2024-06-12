@@ -1,9 +1,14 @@
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import { Roles } from "../entidades/Roles";
+import { useState } from "react";
+import Usuario from "../entidades/Usuario";
 
 function MenuOpciones() {
   const navigate = useNavigate();
-
+  const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('usuario'))
+  const usuarioLogueado: Usuario = JSON.parse(jsonUsuario) as Usuario;
+  
   const cerrarSesion = async () => {
     localStorage.setItem("usuario", "");
     localStorage.removeItem("usuario");
@@ -28,102 +33,20 @@ function MenuOpciones() {
             Productos
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/grilla">
-            Grilla
-          </a>
-        </li>
-        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>
-        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>
-        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>        <li>
-          <div className="nav-link"></div>
-        </li>
-        <li>
-          <a className="nav-link">
-          </a>
-        </li>
-        <li className="nav-item">
+        {
+          (usuarioLogueado.rol === Roles.ADMIN || usuarioLogueado.rol === Roles.OPERADOR) ?
+            <li className="nav-item">
+              <a className="nav-link" href="/grilla">
+                Grilla
+              </a>
+            </li>
+            :
+            <></>
+        }
+        <li className="nav-item ml-auto">
           <button
             onClick={cerrarSesion}
-            className="btn btn-success"
+            className="btn btn-success my-2 my-sm-0"
             type="button"
           >
             Cerrar Sesión

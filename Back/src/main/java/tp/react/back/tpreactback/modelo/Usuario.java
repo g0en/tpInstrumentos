@@ -8,5 +8,6 @@ import lombok.Data;
 public class Usuario extends EntityId{
     private String nombreUsuario;
     private String clave;
-    private String rol;
+
+    private Rol rol;
 }
