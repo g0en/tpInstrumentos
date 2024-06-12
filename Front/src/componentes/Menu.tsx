@@ -7,9 +7,13 @@ import "./css/SeparadorNav.css"
 
 import { Carrito } from "./Carrito";
 import { CarritoContextProvider } from "../context/CarritoContext";
+import Usuario from "../entidades/Usuario";
+import { Roles } from "../entidades/Roles";
 
 function Menu() {
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
+  const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('usuario'))
+  const usuarioLogueado: Usuario = JSON.parse(jsonUsuario) as Usuario;
 
   const getInstrumentos = async () => {
     const datos: Instrumento[] = await getInstrumentoJSONFetch();
@@ -22,7 +26,7 @@ function Menu() {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", marginTop:"80px" }}>
+      <div style={{ display: "flex", flexDirection: "column", marginTop: "80px" }}>
         <MenuOpciones />
         <CarritoContextProvider>
           <div style={{ display: "flex", flexDirection: "row" }}>
@@ -64,8 +68,15 @@ function Menu() {
                 width: "300px", // Ancho fijo para el carrito
               }}
             >
-              <b>Carrito Compras</b>
-              <Carrito />
+              {
+                (usuarioLogueado.rol === Roles.VISOR) ?
+                <div>
+                  <b>Carrito Compras</b>
+                  <Carrito />
+                </div>
+                  :
+                  <></>
+              }
             </div>
           </div>
         </CarritoContextProvider>

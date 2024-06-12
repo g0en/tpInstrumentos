@@ -22,6 +22,7 @@ function Login() {
         try {
             const user: Usuario = await existeEnBase(usuario.nombreUsuario, usuario.clave);
             if (user) {
+                console.log(user.rol);
                 setUsuario(usuario);
                 localStorage.setItem('usuario', JSON.stringify(user));
                 navigate('/menu', {

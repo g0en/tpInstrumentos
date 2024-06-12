@@ -6,7 +6,7 @@ function Home() {
     <div className="container">
       <MenuOpciones />
 
-      <h1 className="main-heading">TIENDA INSTRUMENTOS AGUS</h1>
+      <h1 className="main-heading">TIENDA INSTRUMENTOS</h1>
 
       <div id="carouselExample" className="carousel slide">
         <div className="carousel-inner">
@@ -32,7 +32,7 @@ function Home() {
 
       <div className="content">
         <p>
-          <strong>Tienda de Instrumentos de Agus.</strong> Los mejores precios de toda la Zona Este! Venite a San Martin que te esperamos con los instrumentos de mejor calidad del mercado!
+          <strong>Tienda de Instrumentos.</strong> Los mejores precios de toda la Zona Este! Venite a San Martin que te esperamos con los instrumentos de mejor calidad del mercado!
         </p>
       </div>
     </div>

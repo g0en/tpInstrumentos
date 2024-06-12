@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import "../componentes/css/ItemInstrumento.css";
 import Categoria from "../entidades/Categoria";
 import Instrumento from "../entidades/Instrumento";
@@ -6,6 +6,8 @@ import { useCarrito } from "../hooks/useCarrito";
 import addCart from "../assets/img/addCart.png";
 import deleteCart from "../assets/img/deleteCart.png";
 import "./css/ItemInstrumento.css"
+import Usuario from "../entidades/Usuario";
+import { Roles } from "../entidades/Roles";
 
 type InstrumentoParams = {
   id: number;
@@ -25,6 +27,8 @@ type InstrumentoParams = {
 
 function ItemInstrumento(arg: InstrumentoParams) {
   const { addCarrito, removeCarrito, cart, removeItemCarrito } = useCarrito();
+  const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('usuario'))
+  const usuarioLogueado: Usuario = JSON.parse(jsonUsuario) as Usuario;
 
   const isinstrumentoInCarrito = useMemo(() => {
     for (let detalle of cart) {
@@ -80,34 +84,39 @@ function ItemInstrumento(arg: InstrumentoParams) {
                 </button>
               </a>
               <hr></hr>
-              <p>
-                <a
-                  className="iconoMasMenos"
-                  onClick={() => removeItemCarrito(arg.instrumentoObject)}
-                >
-                  -
-                </a>
-                <button
-                  className="colorFondoBlanco"
-                  onClick={() => {
-                    isinstrumentoInCarrito
-                      ? removeCarrito(arg.instrumentoObject)
-                      : addCarrito(arg.instrumentoObject);
-                  }}
-                >
-                  {isinstrumentoInCarrito ? (
-                    <img src={deleteCart} title="Quitar" />
-                  ) : (
-                    <img src={addCart} title="Comprar" />
-                  )}
-                </button>
-                <a
-                  className="iconoMasMenos"
-                  onClick={() => addCarrito(arg.instrumentoObject)}
-                >
-                  +
-                </a>
-              </p>
+              {
+                (usuarioLogueado.rol === Roles.VISOR) ?
+                  <p>
+                    <a
+                      className="iconoMasMenos"
+                      onClick={() => removeItemCarrito(arg.instrumentoObject)}
+                    >
+                      -
+                    </a>
+                    <button
+                      className="colorFondoBlanco"
+                      onClick={() => {
+                        isinstrumentoInCarrito
+                          ? removeCarrito(arg.instrumentoObject)
+                          : addCarrito(arg.instrumentoObject);
+                      }}
+                    >
+                      {isinstrumentoInCarrito ? (
+                        <img src={deleteCart} title="Quitar" />
+                      ) : (
+                        <img src={addCart} title="Comprar" />
+                      )}
+                    </button>
+                    <a
+                      className="iconoMasMenos"
+                      onClick={() => addCarrito(arg.instrumentoObject)}
+                    >
+                      +
+                    </a>
+                  </p>
+                  :
+                  <></>
+              }
             </div>
           </div>
         </div>

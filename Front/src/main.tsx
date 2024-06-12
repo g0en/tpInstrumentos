@@ -32,9 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/login" element={<Login />} />
 
         //Ruta publica
-          <Route path="/detalle">
-            <Route path=":idInstrumento" element={<DetalleInstrumento />} />
-          </Route>
+        <Route path="/detalle/:idInstrumento" element={<DetalleInstrumento />} />
 
         //Ruta publica
           <Route path="/app" element={<App />} />
@@ -43,17 +41,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/home" element={<Home />} />
 
         //Ruta privada
-          <Route path="/grilla" element={
-            <RutaPrivada>
-              <GrillaInstrumento />
-            </RutaPrivada>
-          } />
+          <Route element={<RolUsuario roles={[Roles.ADMIN, Roles.OPERADOR]} />}>
+            <Route path="/grilla" element={
+              <RutaPrivada>
+                <GrillaInstrumento />
+              </RutaPrivada>
+            } />
+          </Route>
 
-        //Ruta privada
+        //Ruta publica
           <Route path="/menu" element={
-            <RutaPrivada>
-              <Menu />
-            </RutaPrivada>
+            <Menu />
           } />
 
         // Ruta privada
@@ -64,7 +62,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           } />
 
         // Ruta privada y con Rol Administrador
-          <Route element={<RolUsuario rol={Roles.ADMIN} />}>
+          <Route element={<RolUsuario roles={[Roles.ADMIN, Roles.OPERADOR]} />}>
             <Route path="/formulario/:idInstrumento" element={<Formulario />} />
           </Route>
 
@@ -75,5 +73,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Routes>
       </BrowserRouter>
     </Suspense>
-  </React.StrictMode>
+  </React.StrictMode >
 );
