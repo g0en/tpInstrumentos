@@ -3,6 +3,8 @@ package tp.react.back.tpreactback.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tp.react.back.tpreactback.modelo.Pedido;
+import tp.react.back.tpreactback.modelo.PedidoCount;
+import tp.react.back.tpreactback.modelo.PedidoDetalleInstrumentoCount;
 import tp.react.back.tpreactback.services.PedidoService;
 
 @RestController
@@ -35,6 +37,16 @@ public class PedidoController {
     @PutMapping("/modificar")
     public Pedido modificarPedido(@RequestBody Pedido pedido){
         return pedidoServ.modificarPedido(pedido);
+    }
+
+    @GetMapping("/groupByFecha")
+    public Iterable<PedidoCount> groupByFecha(){
+        return pedidoServ.groupByFecha();
+    }
+
+    @GetMapping("/groupByInstrumento")
+    public Iterable<PedidoDetalleInstrumentoCount> groupByInstrumento(){
+        return pedidoServ.getPedidosDetalleCountGroupedByInstrumento();
     }
 
 }

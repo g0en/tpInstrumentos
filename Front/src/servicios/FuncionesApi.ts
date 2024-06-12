@@ -33,6 +33,32 @@ export async function getInstrumentoXIdFetch(id: number) {
   return (await response.json()) as Instrumento;
 }
 
+export async function getPedidosGroupedByFecha() {
+  const urlServer = "http://localhost:8080/Pedido/groupByFecha";
+  const response = await fetch(urlServer, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    mode: "cors",
+  });
+  return (await response.json()) as any[];
+}
+
+export async function getPedidosGroupedByInstrumento() {
+  const urlServer = "http://localhost:8080/Pedido/groupByInstrumento";
+  const response = await fetch(urlServer, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    mode: "cors",
+  });
+  return (await response.json()) as any[];
+}
+
 export async function deleteInstrumentoXId(id: number) {
   const urlServer = "http://localhost:8080/Instrumento/borrar/" + id;
   await fetch(urlServer, {

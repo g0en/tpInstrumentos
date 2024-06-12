@@ -2,12 +2,11 @@ package tp.react.back.tpreactback.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tp.react.back.tpreactback.modelo.Instrumento;
-import tp.react.back.tpreactback.modelo.Pedido;
-import tp.react.back.tpreactback.modelo.PedidoDetalle;
+import tp.react.back.tpreactback.modelo.*;
 import tp.react.back.tpreactback.repository.IInstrumentoRepository;
 import tp.react.back.tpreactback.repository.IPedidoRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -99,5 +98,31 @@ public class PedidoService {
 
     public List<Pedido> findByFecha(Date fechaDesde, Date fechaHasta) {
         return pedidoRepos.findAllByFechaBetween(fechaDesde,fechaHasta);
+    }
+
+    public List<PedidoCount> groupByFecha() {
+        List<Object[]> results = pedidoRepos.countPedidosGroupedByFecha();
+        List<PedidoCount> pedidoCounts = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Date fecha = (Date) result[0];
+            Long totalPedidos = ((Number) result[1]).longValue();
+            pedidoCounts.add(new PedidoCount(fecha, totalPedidos));
+        }
+
+        return pedidoCounts;
+    }
+
+    public List<PedidoDetalleInstrumentoCount> getPedidosDetalleCountGroupedByInstrumento() {
+        List<Object[]> results = pedidoRepos.countPedidosDetalleGroupedByInstrumento();
+        List<PedidoDetalleInstrumentoCount> pedidoDetalleCounts = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String instrumento = (String) result[0];
+            Long cantidadPedidos = ((Number) result[1]).longValue();
+            pedidoDetalleCounts.add(new PedidoDetalleInstrumentoCount(instrumento, cantidadPedidos));
+        }
+
+        return pedidoDetalleCounts;
     }
 }
