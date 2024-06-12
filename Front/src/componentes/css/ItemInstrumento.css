@@ -98,3 +98,16 @@
   color: lightseagreen;
 
 }
+
+.btnDanger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btnDanger:hover {
+  background-color: #c82333; /* Color más oscuro al pasar el mouse */
+  border-color: #bd2130;
+  color: white;
+}

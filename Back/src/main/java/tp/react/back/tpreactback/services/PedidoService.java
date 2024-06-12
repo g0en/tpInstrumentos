@@ -8,6 +8,7 @@ import tp.react.back.tpreactback.modelo.PedidoDetalle;
 import tp.react.back.tpreactback.repository.IInstrumentoRepository;
 import tp.react.back.tpreactback.repository.IPedidoRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -96,5 +97,7 @@ public class PedidoService {
         }
     }
 
-
+    public List<Pedido> findByFecha(Date fechaDesde, Date fechaHasta) {
+        return pedidoRepos.findAllByFechaBetween(fechaDesde,fechaHasta);
+    }
 }

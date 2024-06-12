@@ -12,8 +12,6 @@ import tp.react.back.tpreactback.services.PedidoService;
 public class MercadoPagoController {
 @Autowired
 private MercadoPagoService mercadoPagoService;
-@Autowired
-private PedidoService pedidoService;
 
  @PostMapping("/crear_preference_mp")
     public PreferenceMP crearPreferenceMP(@RequestBody Pedido pedido) {

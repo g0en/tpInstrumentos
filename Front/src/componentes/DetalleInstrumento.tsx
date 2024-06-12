@@ -3,14 +3,34 @@ import { useParams } from "react-router-dom";
 import Instrumento from "../entidades/Instrumento";
 import { getInstrumentoXIdFetch } from "../servicios/FuncionesApi";
 import "../componentes/css/ItemInstrumento.css";
+import { Button } from "@chakra-ui/react";
+import Usuario from "../entidades/Usuario";
+import { Roles } from "../entidades/Roles";
 
 function DetalleInstrumento() {
   const { idInstrumento } = useParams();
   const [instrumento, setInstrumento] = useState<Instrumento | null>(null);
+  const [jsonUsuario, setJSONUsuario] = useState<any>(localStorage.getItem('usuario'))
+  const usuarioLogueado: Usuario = JSON.parse(jsonUsuario) as Usuario;
 
   const getInstrumento = async () => {
     const instrumentoSelect: Instrumento = await getInstrumentoXIdFetch(Number(idInstrumento));
     setInstrumento(instrumentoSelect);
+  };
+
+  const handleGenerarPDF = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/Reporte/pdf/${idInstrumento}`);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+      } else {
+        console.error('Error al generar el PDF:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al generar el PDF:', error);
+    }
   };
 
   useEffect(() => {
@@ -79,6 +99,19 @@ function DetalleInstrumento() {
                 </h6>
                 <p className="card-text">{renderCostoEnvio()}</p>
               </div>
+              {
+                (usuarioLogueado.rol === Roles.ADMIN || usuarioLogueado.rol === Roles.OPERADOR) ?
+                  <Button
+                    className="btn btnDanger"
+                    sx={{ mt: 2, width: '100%', borderRadius: '4px'}}
+                    variant="outlined"
+                    onClick={handleGenerarPDF}
+                  >
+                    Generar PDF
+                  </Button>
+                  :
+                  <></>
+              }
               <div className="card-footer text-body-secondary">
                 <a href="/menu">
                   <button type="button" className="btn btn-success">

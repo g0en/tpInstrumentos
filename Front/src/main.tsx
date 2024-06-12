@@ -11,6 +11,7 @@ import App from "./App.tsx";
 import { RutaPrivada } from "./controlAcceso/RutaPrivada.tsx";
 import RolUsuario from "./controlAcceso/RolUsuario.tsx";
 import { Roles } from "./entidades/Roles.ts";
+import Estadistica from "./componentes/Estadistica.tsx";
 
 
 const Menu = lazy(() => import("./componentes/Menu.tsx"));
@@ -64,6 +65,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         // Ruta privada y con Rol Administrador
           <Route element={<RolUsuario roles={[Roles.ADMIN, Roles.OPERADOR]} />}>
             <Route path="/formulario/:idInstrumento" element={<Formulario />} />
+          </Route>
+
+          <Route element={<RolUsuario roles={[Roles.ADMIN, Roles.ADMIN]} />}>
+            <Route path="/estadisticas" element={<Estadistica></Estadistica>}></Route>
           </Route>
 
           <Route path="/loading" element={<TestLoad />} />

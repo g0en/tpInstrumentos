@@ -91,3 +91,44 @@
 .header .col-1, .header .col-2, .header .col-5 {
   background-color: #343a40 !important;
 }
+
+.btnSuccess {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btnSuccess:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  color: white;
+}
+
+.btnCancel {
+  background-color: #6c757d; /* Gris */
+  border-color: #6c757d;
+  color: white;
+  transition: background-color 0.3s, border-color 0.3s; /* Transición de 0.3 segundos */
+  border-radius: 5px; /* Borde redondeado */
+}
+
+.btnCancel:hover {
+  background-color: #5a6268; /* Color más oscuro al pasar el mouse */
+  border-color: #545b62;
+  color: white;
+}
+
+.btnGenerate {
+  background-color: #007bff; /* Azul de btn-primary */
+  border-color: #007bff;
+  color: white;
+  transition: background-color 0.3s, border-color 0.3s; /* Transición de 0.3 segundos */
+  border-radius: 5px; /* Borde redondeado */
+}
+
+.btnGenerate:hover {
+  background-color: #0069d9; /* Color más oscuro al pasar el mouse */
+  border-color: #0062cc;
+  color: white;
+}

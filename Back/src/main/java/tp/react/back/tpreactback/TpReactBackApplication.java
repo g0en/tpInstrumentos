@@ -108,7 +108,7 @@ public class TpReactBackApplication {
 			Instrumento instr3 = new Instrumento();
 			instr3.setInstrumento("Triangulo Musical 24 Cm Percusion");
 			instr3.setMarca("LBP");
-			instr3.setModelo("24");
+			instr3.setModelo("24 Triangulos");
 			instr3.setImagen("https://imgs.search.brave.com/zfTYEi1SQyUJ9p6cTRzfeK5_xXCJzbeT0bl4QIGbgZk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/aW5zdHJ1bWVudG9z/ZGVwZXJjdXNpb24u/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDE5LzEwL3RyaWFu/Z3Vsby0xLmpwZw");
 			instr3.setCategoria(cat3);
 			instr3.setPrecio(260);

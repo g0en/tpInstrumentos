@@ -43,6 +43,16 @@ function MenuOpciones() {
             :
             <></>
         }
+        {
+          (usuarioLogueado.rol === Roles.ADMIN) ?
+          <li className="nav-item">
+            <a className="nav-link" href="/estadisticas">
+              Estadisticas
+            </a>
+          </li>
+          :
+          <></>
+        }
         <li className="nav-item ml-auto">
           <button
             onClick={cerrarSesion}
