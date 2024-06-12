@@ -101,11 +101,11 @@ public class PedidoService {
     }
 
     public List<PedidoCount> groupByFecha() {
-        List<Object[]> results = pedidoRepos.countPedidosGroupedByFecha();
+        List<Object[]> results = pedidoRepos.countPedidosGroupedByMesYAnio();
         List<PedidoCount> pedidoCounts = new ArrayList<>();
 
         for (Object[] result : results) {
-            Date fecha = (Date) result[0];
+            String fecha = (String) result[0];
             Long totalPedidos = ((Number) result[1]).longValue();
             pedidoCounts.add(new PedidoCount(fecha, totalPedidos));
         }

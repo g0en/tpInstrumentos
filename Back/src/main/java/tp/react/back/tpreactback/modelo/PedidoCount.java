@@ -18,6 +18,6 @@ import java.util.List;
 @Setter
 public class PedidoCount{
 
-    private Date fecha;
+    private String fecha;
     private Long totalPedidos;
 }

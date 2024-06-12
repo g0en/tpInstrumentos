@@ -15,10 +15,12 @@ import java.util.List;
 public interface IPedidoRepository extends JpaRepository<Pedido, Long> {
     List<Pedido> findAllByFechaBetween(@Temporal(TemporalType.DATE) Date fechaDesde, @Temporal(TemporalType.DATE) Date fechaHasta);
 
-    @Query(value = "SELECT p.fecha AS fecha, COUNT(*) AS total_pedidos " +
+    @Query(value = "SELECT DATE_FORMAT(p.fecha, '%Y-%m') AS anio_mes, COUNT(*) AS total_pedidos " +
             "FROM Pedido p " +
-            "GROUP BY p.fecha", nativeQuery = true)
-    List<Object[]> countPedidosGroupedByFecha();
+            "GROUP BY DATE_FORMAT(p.fecha, '%Y-%m')", nativeQuery = true)
+    List<Object[]> countPedidosGroupedByMesYAnio();
+
+
 
     @Query(value = "SELECT i.instrumento AS instrumento, COUNT(pd.pedido_id) AS cantidad_pedidos " +
             "FROM pedido_detalle pd " +

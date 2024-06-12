@@ -89,6 +89,7 @@ function Formulario() {
 
     await saveInstrumento(instrumento);
     navigate("/grilla");
+    window.location.href = window.location.href;
   };
 
   const handleCategoriaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -47,7 +47,7 @@ function Estadistica() {
     }, []);
 
     const optionsFecha = {
-        title: 'Pedidos por Fecha',
+        title: 'Pedidos por Mes y Año',
         hAxis: { title: 'Fecha', titleTextStyle: { color: '#333' } },
         vAxis: { minValue: 0 },
         chartArea: { width: '50%', height: '70%' },
@@ -61,18 +61,18 @@ function Estadistica() {
     return (
         <>
             <MenuOpciones />
-            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px', marginTop: '50px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px', marginTop: '50px'}}>
                 <div style={{ flex: '1' }}>
-                    <h2>Pedidos por Fecha</h2>
+                    <h2>Pedidos por Mes y Año</h2>
                     <Chart
-                        chartType="AreaChart"
+                        chartType="BarChart"
                         width="100%"
                         height="400px"
                         data={pedidosPorFecha}
                         options={optionsFecha}
                     />
                 </div>
-                <div style={{ flex: '1' }}>
+                <div style={{ flex: '1', marginLeft: '300px' }}>
                     <h2>Pedidos por Instrumento</h2>
                     <Chart
                         chartType="PieChart"
