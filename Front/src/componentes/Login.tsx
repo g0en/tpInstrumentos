@@ -32,11 +32,9 @@ function Login() {
                         usuario: user,
                     },
                 });
-            } else {
-                setTxtValidacion("Usuario y/o clave incorrectas");
             }
         } catch (error) {
-            setTxtValidacion("Error en la autenticación. Por favor, intente nuevamente.");
+            setTxtValidacion("Usuario y/o Clave incorrectos, vuelva a intentar.");
             console.error(error);
         }
     }
