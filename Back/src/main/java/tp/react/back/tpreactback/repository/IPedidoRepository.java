@@ -21,8 +21,8 @@ public interface IPedidoRepository extends JpaRepository<Pedido, Long> {
     List<Object[]> countPedidosGroupedByFecha();
 
     @Query(value = "SELECT i.instrumento AS instrumento, COUNT(pd.pedido_id) AS cantidad_pedidos " +
-            "FROM PedidoDetalle pd " +
-            "JOIN Instrumento i ON pd.instrumento_id = i.id " +
+            "FROM pedido_detalle pd " +
+            "JOIN instrumento i ON pd.instrumento_id = i.id " +
             "GROUP BY i.instrumento", nativeQuery = true)
     List<Object[]> countPedidosDetalleGroupedByInstrumento();
 
