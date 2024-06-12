@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
-import instrumentos from "../entidades/Instrumento";
 import { useParams } from "react-router-dom";
 import Instrumento from "../entidades/Instrumento";
 import { getInstrumentoXIdFetch } from "../servicios/FuncionesApi";
 import "../componentes/css/ItemInstrumento.css";
-import MenuOpciones from "./MenuOpciones";
-
 
 function DetalleInstrumento() {
   const { idInstrumento } = useParams();
-  const [instrumento, setInstrumento] = useState<instrumentos>();
+  const [instrumento, setInstrumento] = useState<Instrumento | null>(null);
+
   const getInstrumento = async () => {
-    const intrumentoSelect: Instrumento = await getInstrumentoXIdFetch(
-      Number(idInstrumento)
-    );
-    setInstrumento(intrumentoSelect);
+    const instrumentoSelect: Instrumento = await getInstrumentoXIdFetch(Number(idInstrumento));
+    setInstrumento(instrumentoSelect);
   };
 
   useEffect(() => {
     getInstrumento();
-  }, []);
+  }, [idInstrumento]);
 
   function renderCostoEnvio() {
     if (instrumento?.costoEnvio === "G") {
@@ -39,59 +35,63 @@ function DetalleInstrumento() {
     }
   }
 
+  const getImageUrl = (imagePath: string) => {
+    // Asume que las imágenes locales están en la carpeta public/images
+    return imagePath.startsWith("http") ? imagePath : `/images/${imagePath}`;
+  };
 
   return (
     <>
-      <div className="card mb-3">
-        <div className="row g-0">
-          <div className="col-md-6 card-body">
-            <img
-              src={"/images/" + instrumento?.imagen}
-              className="card-img-top img-altura"
-              alt={instrumento?.imagen}
-            />
-            <h6>Descripción</h6>
-            <p className="card-text">{instrumento?.descripcion}</p>
-          </div>
-          <div
-            className="col-md-6"
-            style={{ borderLeft: "1px solid rgba(0,0,0,0.1)" }}
-          >
-            <div className="card-body">
-              <p className="card-text">
-                {instrumento?.cantidadVendida} vendidos
-              </p>
-              <h6 className="card-title instrumento-title">
-                <strong>{instrumento?.instrumento}</strong>
-              </h6>
-              <p className="card-text precio-text">
-                <strong>${instrumento?.precio}</strong>
-              </p>
-              <div className="marca-modelo">
-                <p className="card-text">
-                  <strong>Marca: {instrumento?.marca}</strong>
-                </p>
-                <p className="card-text">
-                  <strong>Modelo: {instrumento?.modelo}</strong>
-                </p>
-              </div>
-
-              <h6 className="costo-envio">
-                <strong>Costo Envio:</strong>
-              </h6>
-              <p className="card-text">{renderCostoEnvio()}</p>
+      {instrumento && (
+        <div className="card mb-3">
+          <div className="row g-0">
+            <div className="col-md-6 card-body">
+              <img
+                src={getImageUrl(instrumento.imagen)}
+                className="card-img-top img-altura"
+                alt={instrumento.imagen}
+              />
+              <h6>Descripción</h6>
+              <p className="card-text">{instrumento.descripcion}</p>
             </div>
-            <div className="card-footer text-body-secondary">
-              <a href="/menu">
-                <button type="button" className="btn btn-success">
-                  Volver
-                </button>
-              </a>
+            <div
+              className="col-md-6"
+              style={{ borderLeft: "1px solid rgba(0,0,0,0.1)" }}
+            >
+              <div className="card-body">
+                <p className="card-text">{instrumento.cantidadVendida} vendidos</p>
+                <h6 className="card-title instrumento-title">
+                  <strong>{instrumento.instrumento}</strong>
+                </h6>
+                <p className="card-text precio-text">
+                  <strong>${instrumento.precio}</strong>
+                </p>
+                <div className="marca-modelo">
+                  <p className="card-text">
+                    <strong>Marca: {instrumento.marca}</strong>
+                  </p>
+                  <p className="card-text">
+                    <strong>Modelo: {instrumento.modelo}</strong>
+                  </p>
+                </div>
+                <h6 className="costo-envio">
+                  <strong>Costo Envio:</strong>
+                </h6>
+                <p className="card-text">{renderCostoEnvio()}</p>
+              </div>
+              <div className="card-footer text-body-secondary">
+                <a href="/menu">
+                  <button type="button" className="btn btn-success">
+                    Volver
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
+
 export default DetalleInstrumento;

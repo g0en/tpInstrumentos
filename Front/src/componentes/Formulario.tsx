@@ -8,6 +8,7 @@ import {
 } from "../servicios/FuncionesApi";
 import Categoria from "../entidades/Categoria";
 import MenuOpciones from "./MenuOpciones";
+import "./css/Formulario.css";
 
 function Formulario() {
   const navigate = useNavigate();
@@ -24,9 +25,8 @@ function Formulario() {
       let instrumentoSelect: Instrumento = await getInstrumentoXIdFetch(
         Number(idInstrumento)
       );
-      console.log("ID: " + idInstrumento)
       setInstrumento(instrumentoSelect);
-      setCodigoCategoria(instrumentoSelect.categoria?.codigo || 0); // Add this line
+      setCodigoCategoria(instrumentoSelect.categoria?.codigo || 0);
     }
   };
 
@@ -87,7 +87,6 @@ function Formulario() {
       return;
     }
 
-    console.log(instrumento.instrumento);
     await saveInstrumento(instrumento);
     navigate("/grilla");
   };
@@ -104,14 +103,15 @@ function Formulario() {
       setInstrumento({ ...instrumento, categoria: categoriaSeleccionada });
     }
   };
+
   return (
     <>
-      <div className="container-fluid ">
-        <MenuOpciones></MenuOpciones>
+      <div className="container-fluid">
+        <MenuOpciones />
         <div className="container">
-          <h1 className="text-left">Formulario</h1>
+          <h1>Agregar Instrumento</h1>
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-12">
               <div className="mb-3">
                 <label className="form-label">Nombre</label>
                 <input
@@ -235,9 +235,11 @@ function Formulario() {
                   Guardar
                 </button>
               </div>
-              <div className="mb-3">
-                <label className="form-label">{txtValidacion}</label>
-              </div>
+              {txtValidacion && (
+                <div className="mb-3 error-message">
+                  <label className="form-label">{txtValidacion}</label>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -245,4 +247,5 @@ function Formulario() {
     </>
   );
 }
+
 export default Formulario;

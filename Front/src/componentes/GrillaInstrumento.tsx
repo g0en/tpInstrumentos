@@ -33,10 +33,9 @@ function GrillaInstrumento() {
       <MenuOpciones></MenuOpciones>
       <div className="container-fluid text-center">
         <br />
-        <div className="d-flex justify-content-end mb-3">
-          <a className="btn btn-primary" href={`/formulario/0`}>
-            Nuevo
-          </a>
+        <div className="d-flex justify-content-between mb-3">
+          <a className="btn btn-primary" href="/formulario/0">Nuevo</a>
+          <a className="btn btn-success" href="/formulario/0">Generar Excel</a>
         </div>
         <div className="row header border">
           <div className="col-1 border-end">
@@ -90,17 +89,17 @@ function GrillaInstrumento() {
             </div>
             {
               (usuarioLogueado.rol === Roles.ADMIN) ?
-              <div className="col-1 border-end">
-              <a
-                className="btn btn-danger"
-                style={{ marginBottom: 10 }}
-                onClick={() => deleteInstrumento(instrumento.id)}
-              >
-                Eliminar
-              </a>
-            </div>
-            :
-            <></>
+                <div className="col-1 border-end">
+                  <a
+                    className="btn btn-danger"
+                    style={{ marginBottom: 10 }}
+                    onClick={() => deleteInstrumento(instrumento.id)}
+                  >
+                    Eliminar
+                  </a>
+                </div>
+                :
+                <></>
             }
           </div>
         ))}

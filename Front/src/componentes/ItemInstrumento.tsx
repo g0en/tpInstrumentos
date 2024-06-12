@@ -5,7 +5,7 @@ import Instrumento from "../entidades/Instrumento";
 import { useCarrito } from "../hooks/useCarrito";
 import addCart from "../assets/img/addCart.png";
 import deleteCart from "../assets/img/deleteCart.png";
-import "./css/ItemInstrumento.css"
+import "./css/ItemInstrumento.css";
 import Usuario from "../entidades/Usuario";
 import { Roles } from "../entidades/Roles";
 
@@ -45,7 +45,7 @@ function ItemInstrumento(arg: InstrumentoParams) {
         <span style={{ color: "green" }}>
           <i className="fas fa-car" style={{ opacity: 0.5 }}></i>{" "}
           <img
-            src={"/images/camion.png"}
+            src={arg.imagen}
             alt="Descripción de la imagen"
             style={{ width: "20px", height: "20px" }}
           />{" "}
@@ -61,19 +61,24 @@ function ItemInstrumento(arg: InstrumentoParams) {
     }
   };
 
+  const getImageUrl = (imagePath: string) => {
+    // Asume que las imágenes locales están en la carpeta public/images
+    return imagePath.startsWith("http") ? imagePath : `./images/${imagePath}`;
+  };
+
   return (
     <>
-      <div className="card mb-3 ">
+      <div className="card mb-3">
         <div className="row g-0 mi-clase-personalizada">
           <div className="col-md-4 card-body mi-imagen">
             <img
-              src={`./images/${arg.imagen}`}
+              src={getImageUrl(arg.imagen)}
               className="card-img"
               alt={arg.imagen}
             />
           </div>
           <div className="col-md-8">
-            <div className="card-body ">
+            <div className="card-body">
               <h5 className="card-title">{arg.instrumento}</h5>
               <p className="card-text">Precio: ${arg.precio}</p>
               <p className="card-text">{renderCostoEnvio()}</p>

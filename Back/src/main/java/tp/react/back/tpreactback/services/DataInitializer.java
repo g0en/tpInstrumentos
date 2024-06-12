@@ -25,7 +25,7 @@ public class DataInitializer {
     @PostConstruct
     public void init() {
 
-        if(categoriaRepos.count() == 0){
+        /*if(categoriaRepos.count() == 0){
 
             Categoria cat1 = new Categoria();
             cat1.setId(1);
@@ -58,13 +58,13 @@ public class DataInitializer {
             categoriaRepos.save(cat4);
             categoriaRepos.save(cat5);
 
-        }
+        }*/
 
     }
 
     @PostConstruct
     public void init2() {
-        if (instrumentoRepos.count() == 0) { // Verifica si la tabla está vacía
+        /*if (instrumentoRepos.count() == 0) { // Verifica si la tabla está vacía
             String instrumentosJson = "[{\n" +
                     "    \"id\": 1,\n" +
                     "    \"instrumento\": \"Mandolina Instrumento Musical Stagg Sunburst\",\n" +
@@ -185,7 +185,7 @@ public class DataInitializer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 
